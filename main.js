@@ -18,7 +18,7 @@ var Circle = function(props) {
   extend(this, {speed: [3, 3]}, props);
 
   circles.push(this);
-}
+};
 
 Circle.prototype = {
   get left() {
@@ -45,7 +45,7 @@ Circle.prototype = {
     c.fill();
     c.stroke();
   }
-}
+};
 
 var planes = [];
 
@@ -54,7 +54,7 @@ var Plane = function(props) {
   extend(this, {speed: [3, 3]}, props);
 
   planes.push(this);
-}
+};
 
 Plane.prototype = {
   get left() {
@@ -87,12 +87,12 @@ Plane.prototype = {
     c.fill();
     c.stroke();
   }
-}
+};
 
 // props = {x, y}
 var Vector = function(props) {
   extend(this, props);
-}
+};
 
 Vector.prototype = {
   get length() {
@@ -100,9 +100,9 @@ Vector.prototype = {
   },
   // Used for faster calculations in case of comparisons
   get squareLength() {
-    return this.x*this.x + this.y*this.y
+    return this.x*this.x + this.y*this.y;
   }
-}
+};
 
 Vector.random = function(n) {
   var r1 = Math.random(),
@@ -110,8 +110,8 @@ Vector.random = function(n) {
 
   n = n || 1;
 
-  return [(r1 === 0 ? 0 : r1 > 0.5 ? 1 : -1)*n, (r2 === 0 ? 0 : r2 > 0.5 ? 1 : -1)*n]
-}
+  return [(r1 === 0 ? 0 : r1 > 0.5 ? 1 : -1)*n, (r2 === 0 ? 0 : r2 > 0.5 ? 1 : -1)*n];
+};
 
 /*---------------*/
 /*-- Functions --*/
@@ -133,7 +133,7 @@ function circleVSplaneCollision(c, p) {
   var vec = new Vector({x: c.x - p.centerX, y: c.y - p.centerY});
   vec.x += vec.x < 0 ? p.width/2 : -p.width/2;
   vec.y += vec.y < 0 ? p.height/2 : -p.height/2;
-  return vec.squareLength - c.radius*c.radius <= 0
+  return vec.squareLength - c.radius*c.radius <= 0;
 }
 
 function edgeCollision(obj) {
@@ -159,7 +159,7 @@ for(var i = 0; i < 10; i++) {
     y: Math.round(Math.random()*$canvas.height),
     radius: Math.round(Math.random()*20+8),
     speed: Vector.random(3)
-  })
+  });
 
   new Plane({
     x: Math.round(Math.random()*$canvas.width),
@@ -167,7 +167,7 @@ for(var i = 0; i < 10; i++) {
     width: Math.round(Math.random()*30)+10,
     height: Math.round(Math.random()*30)+10,
     speed: Vector.random(3)
-  })
+  });
 }
 
 c.strokeStyle = '#484848';
@@ -242,7 +242,7 @@ $canvas.addEventListener('mousedown', function(e) {
   if(mouseTarget) {
     mouseTarget.stop = true;
   }
-})
+});
 
 $canvas.addEventListener('mousemove', function(e) {
   if(mouseTarget) {
@@ -250,11 +250,11 @@ $canvas.addEventListener('mousemove', function(e) {
     mouseTarget.y = e.pageY;
     mouseTarget.collides = false;
   }
-})
+});
 
 $canvas.addEventListener('mouseup', function() {
   if(mouseTarget) {
     mouseTarget.stop = false;
   }
   mouseTarget = null;
-})
+});
