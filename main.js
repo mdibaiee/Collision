@@ -239,7 +239,9 @@ $canvas.addEventListener('mousedown', function(e) {
       mouseTarget = obj;
   }
 
-  mouseTarget.stop = true;
+  if(mouseTarget) {
+    mouseTarget.stop = true;
+  }
 })
 
 $canvas.addEventListener('mousemove', function(e) {
@@ -251,6 +253,8 @@ $canvas.addEventListener('mousemove', function(e) {
 })
 
 $canvas.addEventListener('mouseup', function() {
-  mouseTarget.stop = false;
+  if(mouseTarget) {
+    mouseTarget.stop = false;
+  }
   mouseTarget = null;
 })
